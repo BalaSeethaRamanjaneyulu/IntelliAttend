@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">IntelliAttend Student</string>
+    
+    <!-- Permission Rationale -->
+    <string name="permission_rationale_camera">Camera permission is required to scan QR codes for attendance.</string>
+    <string name="permission_rationale_location">Location permission is required for GPS-based attendance verification.</string>
+    <string name="permission_rationale_bluetooth">Bluetooth permission is required for proximity-based attendance verification.</string>
+    <string name="permission_rationale_biometric">Biometric authentication is required before marking attendance.</string>
+    
+    <!-- Errors -->
+    <string name="error_network">Network error. Please check your connection.</string>
+    <string name="error_authentication">Authentication failed. Please login again.</string>
+    <string name="error_qr_scan">Failed to scan QR code. Please try again.</string>
+    <string name="error_location_disabled">Please enable location services.</string>
+    <string name="error_bluetooth_disabled">Please enable Bluetooth.</string>
+    
+    <!-- Success Messages -->
+    <string name="success_attendance_marked">Attendance marked successfully!</string>
+    <string name="success_login">Login successful!</string>
+    
+    <!-- Notifications -->
+    <string name="notification_warm_scan_title">Warm Scan Active</string>
+    <string name="notification_warm_scan_text">Collecting sensor data for attendance...</string>
+    <string name="notification_channel_warm_scan">Warm Scan Service</string>
+    <string name="notification_channel_warm_scan_desc">Background sensor data collection</string>
+    
+    <!-- Actions -->
+    <string name="action_scan_qr">Scan QR Code</string>
+    <string name="action_view_timetable">View Timetable</string>
+    <string name="action_view_history">View History</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_cancel">Cancel</string>
+    
+    <!-- Labels -->
+    <string name="label_student_id">Student ID</string>
+    <string name="label_password">Password</string>
+    <string name="label_confidence">Confidence Score</string>
+    <string name="label_status">Status</string>
+</resources>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliAttend SmartBoard Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Main Dashboard Screen -->
+    <div class="screen active" id="dashboard-screen">
+
+        <!-- Header Navigation Bar -->
+        <header class="navbar">
+            <div class="brand">
+                <div class="brand-icon">🎓</div>
+                <h1 class="brand-name">IntelliAttend</h1>
+            </div>
+
+            <div class="connectivity-indicators">
+                <div class="indicator" id="wifi-status">
+                    <div class="indicator-icon">📶</div>
+                    <span>Wi-Fi</span>
+                </div>
+                <div class="indicator" id="ble-status">
+                    <div class="indicator-icon">📡</div>
+                    <span>BLE</span>
+                </div>
+                <div class="indicator" id="server-status">
+                    <div class="indicator-icon">🔌</div>
+                    <span>Server</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Left Section: Faculty Banner & Attendance Grid -->
+            <section class="left-section">
+                <!-- Faculty Banner Section -->
+                <div class="faculty-banner">
+                    <div class="faculty-info">
+                        <h2 class="faculty-name">Dr. Faculty Name</h2>
+                        <p class="course-info">CSE-101 | Section A</p>
+                    </div>
+                </div>
+
+                <!-- Seating Grid Section -->
+                <div class="seating-grid-wrapper">
+                    <div class="grid-header">
+                        <div class="grid-title">ATTENDANCE STATUS (50)</div>
+                        <div class="action-controls">
+                            <button class="btn-primary" id="start-session-btn">
+                                START SESSION
+                            </button>
+                            <div class="session-timer hidden" id="session-timer-display">
+                                <span class="timer-label">SESSION:</span>
+                                <span class="timer-value" id="timer-display">00:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="student-grid" class="student-grid">
+                        <!-- Seats will be rendered dynamically by dashboard.js -->
+                    </div>
+
+                    <div class="grid-footer">
+                        <div class="grid-legend">
+                            <div class="legend-item"><span class="dot absent"></span> Absent</div>
+                            <div class="legend-item"><span class="dot pending"></span> Pending</div>
+                            <div class="legend-item"><span class="dot present"></span> Present</div>
+                            <div class="legend-item"><span class="dot failed"></span> Failed</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Section: QR Display -->
+            <section class="qr-section">
+                <div class="nexus-branding">
+                    <div class="nexus-title">NEXUS <span class="nexus-highlight">ID</span></div>
+                    <div class="nexus-subtitle">DYNAMIC VERIFICATION STREAM</div>
+                </div>
+
+                <div class="qr-container">
+                    <div class="qr-display" id="qr-code-container">
+                        <canvas id="qr-canvas"></canvas>
+                    </div>
+                </div>
+
+                <div class="rotation-info">
+                    <span class="rotation-label">ROTATION CYCLE:</span>
+                    <span class="rotation-value" id="rotation-cycle">05.000s</span>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- OTP Entry Screen (Hidden by default) -->
+    <div class="screen" id="otp-screen">
+        <div class="otp-container">
+            <h2 class="otp-title">Enter Session Code</h2>
+            <input type="text" class="otp-input" id="otp-input" placeholder="Enter OTP">
+            <button class="btn-primary" id="verify-otp-btn">Verify</button>
+        </div>
+    </div>
+
+    <!-- Fullscreen Prompt Overlay -->
+    <div class="fullscreen-prompt hidden" id="fullscreen-prompt">
+        <div class="prompt-content">
+            <div class="prompt-icon">🖥️</div>
+            <h2 class="prompt-title">Optimal Viewing Required</h2>
+            <p class="prompt-message">For the best experience, please switch to fullscreen mode or use a larger display.
+            </p>
+            <button class="btn-primary btn-fullscreen" id="enter-fullscreen-btn">Enter Fullscreen</button>
+            <button class="btn-secondary" id="dismiss-prompt-btn">Continue Anyway</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/qrcode.min.js"></script>
+    <script src="js/qr-renderer.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/websocket-client.js"></script>
+</body>
+
+</html>

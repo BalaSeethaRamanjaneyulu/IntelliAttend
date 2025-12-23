@@ -1,0 +1,781 @@
+/* ===================================
+   IntelliAttend SmartBoard Portal
+   Modern Design System & Styles
+   =================================== */
+
+/* === Design Tokens === */
+:root {
+    /* Colors */
+    --color-bg-primary: #0a0e1a;
+    --color-bg-secondary: #0d1220;
+    --color-bg-card: rgba(255, 255, 255, 0.05);
+    --color-bg-card-hover: rgba(255, 255, 255, 0.08);
+
+    --color-text-primary: #ffffff;
+    --color-text-secondary: rgba(255, 255, 255, 0.6);
+    --color-text-muted: rgba(255, 255, 255, 0.4);
+
+    --color-accent: #00d9ff;
+    --color-accent-glow: rgba(0, 217, 255, 0.3);
+
+    --color-success: #00ff88;
+    --color-warning: #ffaa00;
+    --color-error: #ff3366;
+
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-border-bright: rgba(255, 255, 255, 0.2);
+
+    /* Spacing */
+    --space-xs: 6px;
+    --space-sm: 10px;
+    --space-md: 14px;
+    --space-lg: 20px;
+    --space-xl: 28px;
+    --space-2xl: 40px;
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    --font-size-xs: 10px;
+    --font-size-sm: 12px;
+    --font-size-base: 13px;
+    --font-size-md: 14px;
+    --font-size-lg: 16px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 28px;
+    --font-size-3xl: 42px;
+
+    /* Effects */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 24px;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 24px var(--color-accent-glow);
+
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* === Base Styles === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: #05070a;
+    background: radial-gradient(circle at 50% 50%, #0d1220 0%, #05070a 100%);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* === Navigation Bar === */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 32px;
+    background: rgba(10, 14, 26, 0.8);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-icon {
+    font-size: 20px;
+}
+
+.brand-name {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.connectivity-indicators {
+    display: flex;
+    gap: 12px;
+}
+
+.indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    font-size: 11px;
+    color: var(--color-text-muted);
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    color: #ffffff;
+    background: rgba(0, 217, 255, 0.1);
+    border-color: rgba(0, 217, 255, 0.3);
+}
+
+.indicator.active#wifi-status {
+    background: rgba(0, 255, 136, 0.15);
+    border-color: rgba(0, 255, 136, 0.4);
+}
+
+.indicator.active#server-status {
+    background: rgba(0, 255, 136, 0.15);
+    border-color: rgba(0, 255, 136, 0.4);
+}
+
+/* === Main Screen Layout === */
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    /* 50 boxes on left, QR on right */
+    gap: 40px;
+    padding: 40px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* === Faculty Banner Section === */
+.faculty-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 24px 32px;
+    backdrop-filter: blur(4px);
+}
+
+.faculty-name {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #ffffff;
+}
+
+.course-info {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.5px;
+}
+
+/* === Buttons & Controls === */
+.btn-primary {
+    height: 38px;
+    padding: 0 24px;
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--color-accent);
+    color: var(--color-bg-primary);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+}
+
+.session-timer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.timer-label {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.timer-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+}
+
+/* === Statistics Grid === */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+/* === Seating Grid Section === */
+/* === Seating Grid Section === */
+.seating-grid-wrapper {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 1;
+    width: 100%;
+}
+
+.grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grid-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--color-text-muted);
+}
+
+.grid-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+}
+
+.grid-legend {
+    display: flex;
+    gap: 16px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+}
+
+.dot.absent {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dot.pending {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dot.present {
+    background: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+}
+
+.dot.failed {
+    background: #ff3366;
+    box-shadow: 0 0 10px rgba(255, 51, 102, 0.4);
+}
+
+.student-grid {
+    display: grid;
+    grid-template-columns: 30px repeat(10, 1fr);
+    gap: 12px;
+    width: 100%;
+    align-items: center;
+}
+
+.grid-row-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.seat {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.seat.absent {
+    background: rgba(255, 255, 255, 0.01);
+    opacity: 0.5;
+}
+
+.seat.pending {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.seat.present {
+    background: transparent;
+    border: 1.5px solid #00ff88;
+    color: #00ff88;
+    box-shadow: inset 0 0 8px rgba(0, 255, 136, 0.2), 0 0 12px rgba(0, 255, 136, 0.2);
+    transform: scale(1.05);
+}
+
+.seat.failed {
+    background: transparent;
+    border: 1.5px solid #ff3366;
+    color: #ff3366;
+    box-shadow: inset 0 0 8px rgba(255, 51, 102, 0.2), 0 0 12px rgba(255, 51, 102, 0.2);
+    transform: scale(1.05);
+}
+
+.seat:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* === QR Section === */
+.qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.nexus-branding {
+    text-align: center;
+}
+
+.nexus-title {
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: 12px;
+    margin-bottom: 8px;
+}
+
+.nexus-highlight {
+    color: var(--color-accent);
+}
+
+.nexus-subtitle {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.qr-container {
+    width: 100%;
+    max-width: 650px;
+    aspect-ratio: 1;
+    background: radial-gradient(circle at center, rgba(13, 18, 32, 0.6) 0%, rgba(5, 7, 10, 0) 70%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 64px;
+}
+
+
+.qr-container::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 40px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 40%, transparent 60%, rgba(255, 255, 255, 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.qr-display {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#qr-canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+}
+
+.rotation-info {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--color-text-muted);
+}
+
+.rotation-value {
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+/* === Fullscreen Prompt Overlay === */
+.fullscreen-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 7, 10, 0.95);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.prompt-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    padding: 48px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: var(--shadow-lg);
+}
+
+.prompt-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+}
+
+.prompt-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--color-text-primary);
+}
+
+.prompt-message {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.btn-fullscreen {
+    width: 100%;
+    margin-bottom: 12px;
+    height: 48px;
+    font-size: 14px;
+}
+
+.btn-secondary {
+    width: 100%;
+    height: 38px;
+    padding: 0 24px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-bright);
+}
+
+/* === Utilities === */
+.hidden {
+    display: none !important;
+}
+
+/* === Responsive Design === */
+
+/* Large Screens (1920px and above) - Scale up slightly */
+@media (min-width: 1920px) {
+    :root {
+        --space-xs: 8px;
+        --space-sm: 12px;
+        --space-md: 16px;
+        --space-lg: 24px;
+        --space-xl: 32px;
+        --space-2xl: 48px;
+    }
+
+    .main-content {
+        padding: 48px;
+        gap: 48px;
+    }
+
+    .nexus-title {
+        font-size: 72px;
+    }
+
+    .seat {
+        font-size: 11px;
+    }
+}
+
+/* Medium-Large Screens (1366px - 1920px) - Default styles work well */
+@media (min-width: 1366px) and (max-width: 1919px) {
+    .main-content {
+        gap: 32px;
+        padding: 32px;
+    }
+
+    .nexus-title {
+        font-size: 56px;
+    }
+}
+
+/* Laptop/Tablet Landscape (1024px - 1365px) - Compact but readable */
+@media (min-width: 1024px) and (max-width: 1365px) {
+    .main-content {
+        gap: 24px;
+        padding: 24px;
+    }
+
+    .faculty-banner {
+        padding: 20px 24px;
+    }
+
+    .faculty-name {
+        font-size: 18px;
+    }
+
+    .nexus-title {
+        font-size: 48px;
+        letter-spacing: 8px;
+    }
+
+    .nexus-subtitle {
+        font-size: 10px;
+        letter-spacing: 4px;
+    }
+
+    .qr-container {
+        max-width: 500px;
+        padding: 48px;
+    }
+
+    .seating-grid-wrapper {
+        padding: 24px;
+    }
+
+    .seat {
+        font-size: 9px;
+    }
+
+    .student-grid {
+        gap: 10px;
+    }
+}
+
+/* Tablet Portrait/Small Laptop (768px - 1023px) - Stack layout if needed */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 20px;
+    }
+
+    .qr-section {
+        gap: 24px;
+    }
+
+    .nexus-title {
+        font-size: 40px;
+        letter-spacing: 6px;
+    }
+
+    .qr-container {
+        max-width: 400px;
+        padding: 32px;
+    }
+
+    .seating-grid-wrapper {
+        padding: 20px;
+    }
+
+    .seat {
+        font-size: 8px;
+    }
+
+    .student-grid {
+        gap: 8px;
+        grid-template-columns: 24px repeat(10, 1fr);
+    }
+}
+
+/* Height-based adjustments for better vertical spacing */
+@media (max-height: 900px) {
+    .main-content {
+        padding: 24px;
+        gap: 24px;
+    }
+
+    .faculty-banner {
+        padding: 16px 24px;
+    }
+
+    .faculty-name {
+        font-size: 18px;
+    }
+
+    .nexus-title {
+        font-size: 48px;
+        letter-spacing: 8px;
+    }
+
+    .nexus-subtitle {
+        font-size: 10px;
+        letter-spacing: 4px;
+    }
+
+    .qr-container {
+        padding: 40px;
+        max-width: 500px;
+    }
+
+    .qr-section {
+        gap: 32px;
+    }
+
+    .seating-grid-wrapper {
+        padding: 24px;
+        gap: 16px;
+    }
+}
+
+@media (max-height: 768px) {
+    .main-content {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .faculty-banner {
+        padding: 12px 20px;
+    }
+
+    .faculty-name {
+        font-size: 16px;
+    }
+
+    .nexus-title {
+        font-size: 36px;
+        letter-spacing: 6px;
+    }
+
+    .nexus-subtitle {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    .qr-container {
+        padding: 32px;
+        max-width: 400px;
+    }
+
+    .qr-section {
+        gap: 24px;
+    }
+
+    .seating-grid-wrapper {
+        padding: 20px;
+        gap: 12px;
+    }
+
+    .seat {
+        font-size: 8px;
+    }
+
+    .student-grid {
+        gap: 8px;
+    }
+}
+
+/* Extra small height screens */
+@media (max-height: 600px) {
+    .navbar {
+        padding: 8px 24px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .main-content {
+        padding: 16px;
+        gap: 16px;
+    }
+}

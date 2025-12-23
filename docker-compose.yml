@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: intelliattend-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password_change_me
+      MYSQL_DATABASE: intelliattend
+      MYSQL_USER: intelliattend_user
+      MYSQL_PASSWORD: intelliattend_password_change_me
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - intelliattend-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Python FastAPI Backend (development)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: intelliattend-backend
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: mysql+mysqlconnector://intelliattend_user:intelliattend_password_change_me@mysql:3306/intelliattend
+      JWT_SECRET: your_jwt_secret_change_me_in_production
+      JWT_EXPIRES_IN: 86400 # 24 hours in seconds
+      CORS_ORIGINS: http://localhost:8080,http://localhost:5173
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    networks:
+      - intelliattend-network
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  # SmartBoard Portal (development - simple HTTP server)
+  smartboard:
+    image: nginx:alpine
+    container_name: intelliattend-smartboard
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./smartboard-portal:/usr/share/nginx/html:ro
+    networks:
+      - intelliattend-network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  intelliattend-network:
+    driver: bridge
