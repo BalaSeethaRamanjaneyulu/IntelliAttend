@@ -15,7 +15,10 @@ from app.core.security import (
     decode_token
 )
 from app.core.config import settings
-from app.schemas.auth_schema import LoginRequest, TokenResponse, UserProfile
+from app.schemas.auth_schema import LoginRequest, TokenResponse, UserProfile, FirebaseLoginRequest
+import firebase_admin
+from firebase_admin import auth
+from app.core import firebase # Ensure firebase app is initialized
 
 
 class AuthService:
@@ -69,6 +72,79 @@ class AuthService:
         token_data = {
             "sub": user_id,
             "role": login_data.role,
+            "id": user.id
+        }
+        
+        access_token = create_access_token(token_data)
+        refresh_token = create_refresh_token(token_data)
+        
+        return TokenResponse(
+            access_token=access_token,
+            refresh_token=refresh_token,
+            token_type="bearer",
+            expires_in=settings.JWT_EXPIRES_IN
+        )
+
+    @staticmethod
+    def verify_firebase_token(token: str) -> dict:
+        """
+        Verify Firebase ID token
+        """
+        try:
+            decoded_token = auth.verify_id_token(token)
+            return decoded_token
+        except Exception as e:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail=f"Invalid Firebase token: {str(e)}"
+            )
+
+    @staticmethod
+    def authenticate_with_firebase(db: Session, login_data: FirebaseLoginRequest) -> TokenResponse:
+        """
+        Authenticate user using Firebase ID token
+        """
+        # Verify token
+        decoded_token = AuthService.verify_firebase_token(login_data.token)
+        phone_number = decoded_token.get("phone_number")
+        if not phone_number:
+             raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Firebase token missing phone number"
+            )
+
+        # Normalize phone number if needed (assuming DB has E.164 format)
+        # TODO: Implement robust phone number matching if formats differ
+        
+        user = None
+        user_id = None
+        role = login_data.role
+
+        # Try to find user in Student or Faculty tables based on phone number
+        # Note: Ideally, we should check both or rely on the role passed
+        
+        if role == "student":
+            user = db.query(Student).filter(Student.phone_number == phone_number).first()
+            if user:
+                user_id = user.student_id
+        elif role == "faculty":
+            user = db.query(Faculty).filter(Faculty.phone_number == phone_number).first()
+            if user:
+                user_id = user.faculty_id
+                
+        # If user not found in the requested role, potentially check the other?
+        # For now, strict role checking based on request
+        
+        if not user:
+             raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"User with phone number {phone_number} not found in {role} records"
+            )
+
+        # Create tokens
+        token_data = {
+            "sub": user_id,
+            "role": role,
             "id": user.id
         }
         

@@ -11,8 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.intelliattend.app.faculty.QRGeneratorScreen
+import com.intelliattend.app.faculty.OTPScreen
 import com.intelliattend.app.student.QRScannerScreen
+import com.intelliattend.app.student.StudentDashboardScreen
 import com.intelliattend.app.ui.auth.LoginScreen
 import com.intelliattend.app.ui.theme.IntelliAttendTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,20 +33,27 @@ class MainActivity : ComponentActivity() {
                         composable("login") {
                             LoginScreen(onLoginSuccess = { role ->
                                 if (role == "faculty") {
-                                    navController.navigate("faculty_qr/CS101")
+                                    navController.navigate("faculty_otp/CS101")
                                 } else {
-                                    navController.navigate("student_scanner")
+                                    navController.navigate("student_dashboard")
                                 }
+                            })
+                        }
+                        composable("student_dashboard") {
+                            StudentDashboardScreen(onScanClick = {
+                                navController.navigate("student_scanner")
                             })
                         }
                         composable("student_scanner") {
                             QRScannerScreen(onScanComplete = {
-                                // Navigate to success or dashboard
+                                navController.navigate("student_dashboard") {
+                                    popUpTo("student_scanner") { inclusive = true }
+                                }
                             })
                         }
-                        composable("faculty_qr/{sessionId}") { backStackEntry ->
+                        composable("faculty_otp/{sessionId}") { backStackEntry ->
                             val sessionId = backStackEntry.arguments?.getString("sessionId") ?: ""
-                            QRGeneratorScreen(sessionId = sessionId)
+                            OTPScreen(sessionId = sessionId)
                         }
                     }
                 }

@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.db.database import get_db
-from app.schemas.auth_schema import LoginRequest, TokenResponse, TokenRefreshRequest, UserProfile
+from app.schemas.auth_schema import LoginRequest, TokenResponse, TokenRefreshRequest, UserProfile, FirebaseLoginRequest
 from app.services.auth_service import AuthService
 
 router = APIRouter()
@@ -24,6 +24,17 @@ async def login(
     - **role**: "student" or "faculty"
     """
     return AuthService.authenticate_user(db, login_data)
+
+
+@router.post("/login/firebase", response_model=TokenResponse)
+async def login_firebase(
+    login_data: FirebaseLoginRequest,
+    db: Session = Depends(get_db)
+):
+    """
+    Authenticate user using Firebase Phone Auth token
+    """
+    return AuthService.authenticate_with_firebase(db, login_data)
 
 
 @router.post("/refresh", response_model=TokenResponse)

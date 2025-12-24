@@ -12,6 +12,12 @@ class LoginRequest(BaseModel):
     role: str  # "student" or "faculty"
 
 
+class FirebaseLoginRequest(BaseModel):
+    """Firebase Login request"""
+    token: str
+    role: Optional[str] = "student" # Default to student if not specified, but should be handled by logic
+
+
 class TokenResponse(BaseModel):
     """JWT token response"""
     access_token: str
