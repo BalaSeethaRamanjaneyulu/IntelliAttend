@@ -171,6 +171,19 @@ async def qr_refresh_loop(
             # Generate new QR token
             qr_token, sequence = QRService.generate_qr_token(db, session)
             
+            # ============================================
+            # DETAILED TOKEN LOGGING FOR DEBUGGING
+            # ============================================
+            print(f"\n{'='*60}")
+            print(f"[QR TOKEN GENERATED] Cycle #{sequence}")
+            print(f"{'='*60}")
+            print(f"Session ID: {session_id}")
+            print(f"Encrypted Token:")
+            print(f"  {qr_token}")
+            print(f"Token Length: {len(qr_token)} chars")
+            print(f"Expires in: {settings.QR_TOKEN_EXPIRY_SECONDS} seconds")
+            print(f"{'='*60}\n")
+            
             # Broadcast to all clients
             await manager.broadcast_to_session(session_id, {
                 "type": "qr_update",

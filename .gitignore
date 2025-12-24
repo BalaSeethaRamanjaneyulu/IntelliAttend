@@ -32,6 +32,8 @@ ENV/
 logs/
 .env
 .env.local
+.env.bak
+create_test_session*.py
 
 # Database
 *.sql

@@ -167,45 +167,12 @@ function attemptReconnect(sessionId) {
 
 /**
  * Request QR token generation
- * (Placeholder for Phase 2 - will integrate with backend in Phase 3)
  */
 function requestQRToken() {
-    // TODO: Send message to server to generate QR token
-    // For Phase 2, we'll simulate token updates
-
-    console.log('[WebSocket] Requesting QR token...');
-
-    // Simulate QR token updates every 5 seconds
-    simulateQRUpdates();
+    console.log('[WebSocket] Connected - QR tokens will be pushed automatically by server');
+    // No action needed - server will broadcast qr_update messages every 5 seconds
 }
 
-/**
- * Simulate QR token updates (Phase 2 placeholder)
- */
-function simulateQRUpdates() {
-    let sequence = 0;
-
-    const updateInterval = setInterval(() => {
-        sequence++;
-
-        const mockToken = `IATT_SESS123_${sequence}_${Date.now()}_ABC123`;
-
-        handleQRUpdate({
-            type: 'qr_update',
-            qr_token: mockToken,
-            sequence_number: sequence
-        });
-
-        // Stop after 24 updates (2 minutes for 5-second intervals)
-        if (sequence >= 24) {
-            clearInterval(updateInterval);
-            handleSessionStatus({ status: 'completed' });
-        }
-    }, CONFIG.QR_REFRESH_INTERVAL);
-
-    // Store interval ID to clear later
-    window.appState.qrUpdateInterval = updateInterval;
-}
 
 /**
  * Close WebSocket connection

@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         startBtn.addEventListener('click', startSessionSequence);
     }
 
+    // OTP Verification Button Handler
+    const verifyOtpBtn = document.getElementById('verify-otp-btn');
+    if (verifyOtpBtn) {
+        verifyOtpBtn.addEventListener('click', verifyOTPAndLinkSession);
+    }
+
     // Fullscreen Prompt Handlers
     const enterFullscreenBtn = document.getElementById('enter-fullscreen-btn');
     const dismissPromptBtn = document.getElementById('dismiss-prompt-btn');
@@ -42,6 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function startSessionSequence() {
+    // Check if we have a valid session ID from OTP verification
+    if (!window.appState.sessionId) {
+        console.error('[Session] No session ID available. Please verify OTP first.');
+        alert('Please enter a valid session code first');
+        showScreen('otp-screen');
+        return;
+    }
+
     const startBtn = document.getElementById('start-session-btn');
     const timerDisplay = document.getElementById('session-timer-display');
 
@@ -53,11 +67,9 @@ function startSessionSequence() {
     // Start Clock Timer
     setInterval(updateTimer, 1000);
 
-    // Initial QR
-    generateNextQR();
-
-    // 5-Second Refresh Loop
-    window.appState.qrInterval = setInterval(generateNextQR, 5000);
+    // Initialize WebSocket connection - backend will push QR tokens every 5 seconds
+    console.log('[Session] Connecting to WebSocket for session:', window.appState.sessionId);
+    initializeWebSocket(window.appState.sessionId);
 
     // Mock Attendance Simulation (Phase 2 Testing)
     simulateAttendanceUpdates();
@@ -97,12 +109,68 @@ function updateTimer() {
     document.getElementById('timer-display').textContent = `${mins}:${secs}`;
 }
 
-function generateNextQR() {
-    // Generate a secure mock session token
-    const mockToken = `IATT_${Math.random().toString(36).substring(7)}_${Date.now()}`;
-    if (typeof renderQRCode === 'function') {
-        renderQRCode(mockToken);
+// QR tokens are now generated and pushed by the backend via WebSocket
+// The qr_refresh_loop in websocket.py sends tokens every 5 seconds
+// renderQRCode() is called by handleQRUpdate() in websocket-client.js
+console.log('[QR] Backend WebSocket will push QR tokens every 5 seconds');
+
+/**
+ * Verify OTP and link SmartBoard to session
+ */
+async function verifyOTPAndLinkSession() {
+    const otpInput = document.getElementById('otp-input');
+    const otp = otpInput.value.trim();
+
+    if (!otp) {
+        alert('Please enter a session code');
+        return;
     }
+
+    // TEMPORARY: Bypass OTP for testing - use hardcoded session
+    // Format matches backend: SESS_YYYYMMDDHHMMSS_ random
+    console.log('[OTP] TESTING MODE: Using hardcoded session ID');
+    window.appState.sessionId = 'SESS_20251224102700_ABC123';
+    window.appState.isLinked = true;
+    showScreen('dashboard-screen');
+    initializeDashboard();
+    console.log('[OTP] ✅ TEST MODE - Using session:', window.appState.sessionId);
+    return;
+
+    /* REAL IMPLEMENTATION (will enable once backend endpoint ready):
+    try {
+        console.log('[OTP] Verifying session code:', otp);
+
+        // Call backend API to verify OTP 
+        const response = await fetch(`${CONFIG.API_URL}/sessions/verify-otp`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ otp })
+        });
+
+        if (!response.ok) {
+            throw new Error('Invalid session code');
+        }
+
+        const data = await response.json();
+        console.log('[OTP] Verification successful:', data);
+
+        // Store session ID
+        window.appState.sessionId = data.session_id;
+        window.appState.isLinked = true;
+
+        // Show dashboard
+        showScreen('dashboard-screen');
+        initializeDashboard();
+
+        console.log('[OTP] ✅ SmartBoard linked to session:', data.session_id);
+
+    } catch (error) {
+        console.error('[OTP] Verification failed:', error);
+        alert('Invalid session code. Please try again.');
+    }
+    */
 }
 
 function showScreen(screenId) {

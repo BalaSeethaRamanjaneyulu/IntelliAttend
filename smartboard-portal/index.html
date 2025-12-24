@@ -81,13 +81,18 @@
             <!-- Right Section: QR Display -->
             <section class="qr-section">
                 <div class="nexus-branding">
-                    <div class="nexus-title">NEXUS <span class="nexus-highlight">ID</span></div>
+                    <div class="nexus-title">Intelli<span class="nexus-highlight">Attend</span></div>
                     <div class="nexus-subtitle">DYNAMIC VERIFICATION STREAM</div>
                 </div>
 
                 <div class="qr-container">
                     <div class="qr-display" id="qr-code-container">
                         <canvas id="qr-canvas"></canvas>
+
+                        <!-- Central Branded Island (matching React design) -->
+                        <div class="center-island">
+                            <div class="diamond-logo"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -124,7 +129,44 @@
 
     <!-- Scripts -->
     <script src="js/config.js"></script>
-    <script src="js/qrcode.min.js"></script>
+    <!-- QR Encoder Library (qrcode-generator - stable synchronous) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+
+    <!-- QR Encoder Wrapper -->
+    <script>
+        // Wrapper to expose QREncoder globally
+        (function (global) {
+            function generateQRMatrix(text) {
+                try {
+                    // Create QR instance (Type 0 = auto-detect best version)
+                    // Error Correction Level H (Highest)
+                    const qr = qrcode(0, 'H');
+                    qr.addData(text);
+                    qr.make();
+
+                    const moduleCount = qr.getModuleCount();
+                    const matrix = [];
+
+                    for (let row = 0; row < moduleCount; row++) {
+                        const rowData = [];
+                        for (let col = 0; col < moduleCount; col++) {
+                            // isDark returns true for black modules
+                            rowData.push(qr.isDark(row, col) ? 1 : 0);
+                        }
+                        matrix.push(rowData);
+                    }
+
+                    return matrix;
+                } catch (error) {
+                    console.error('QR encoding error:', error);
+                    throw error;
+                }
+            }
+            global.QREncoder = { generate: generateQRMatrix };
+            console.log('✅ QR Encoder library (qrcode-generator) loaded and ready');
+        })(window);
+    </script>
+    <!-- Custom Dynamic Pattern Renderer -->
     <script src="js/qr-renderer.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/main.js"></script>
