@@ -1,125 +1,95 @@
 """
-WebSocket routes for real-time updates - Phase 3 implementation
+WebSocket routes for real-time updates - Firestore version
 """
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Depends
-from sqlalchemy.orm import Session
-from typing import Dict, Set
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from app.services.websocket_manager import manager
+from app.services.attendance_service import AttendanceService
+import firebase_admin
+from firebase_admin import firestore
+from app.core import firebase
 import asyncio
 import json
 
-from app.db.database import get_db
-from app.services.session_service import SessionService
-from app.services.qr_service import QRService
-from app.core.config import settings
-
 router = APIRouter()
 
-# Active WebSocket connections per session
-active_connections: Dict[str, Set[WebSocket]] = {}
-
-
-class ConnectionManager:
-    """Manage WebSocket connections for sessions"""
-    
-    def __init__(self):
-        self.active_connections: Dict[str, Set[WebSocket]] = {}
-    
-    async def connect(self, websocket: WebSocket, session_id: str):
-        """Accept and store WebSocket connection"""
-        await websocket.accept()
-        
-        if session_id not in self.active_connections:
-            self.active_connections[session_id] = set()
-        
-        self.active_connections[session_id].add(websocket)
-        print(f"[WebSocket] Client connected to session: {session_id}")
-    
-    def disconnect(self, websocket: WebSocket, session_id: str):
-        """Remove WebSocket connection"""
-        if session_id in self.active_connections:
-            self.active_connections[session_id].discard(websocket)
-            
-            if not self.active_connections[session_id]:
-                del self.active_connections[session_id]
-        
-        print(f"[WebSocket] Client disconnected from session: {session_id}")
-    
-    async def broadcast_to_session(self, session_id: str, message: dict):
-        """Broadcast message to all clients in a session"""
-        if session_id not in self.active_connections:
-            return
-        
-        # Remove disconnected clients
-        dead_connections = set()
-        
-        for connection in self.active_connections[session_id]:
-            try:
-                await connection.send_json(message)
-            except Exception as e:
-                print(f"[WebSocket] Error sending to client: {e}")
-                dead_connections.add(connection)
-        
-        # Clean up dead connections
-        for conn in dead_connections:
-            self.active_connections[session_id].discard(conn)
-
-
-manager = ConnectionManager()
+def _get_db():
+    """Get Firestore client"""
+    if not firebase_admin._apps:
+        firebase.initialize_firebase()
+    return firestore.client()
 
 
 @router.websocket("/session/{session_id}")
-async def websocket_session(
-    websocket: WebSocket,
-    session_id: str,
-    db: Session = Depends(get_db)
-):
+async def websocket_session_endpoint(websocket: WebSocket, session_id: str):
     """
     WebSocket endpoint for real-time session updates
     
-    Clients: SmartBoard portal, Faculty app
+    Clients: SmartBoard portal, Faculty mobile app
     
     Messages sent to client:
-    - qr_update: New QR token every 5 seconds
-    - attendance_update: Real-time attendance stats
+    - attendance_update: Real-time attendance count
     - session_status: Session state changes
+    - student_joined: When a student marks attendance
     
     Usage:
-    const ws = new WebSocket('ws://localhost:8000/ws/session/SESS_123');
+    const ws = new WebSocket('ws://localhost:8000/api/v1/websocket/session/SESSION_ID');
     ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        // Handle qr_update, attendance_update, session_status
+        if (data.type === 'attendance_update') {
+            updateCount(data.total_present);
+        }
     };
     """
-    # Verify session exists and is active
-    try:
-        session = SessionService.get_active_session(db, session_id)
-    except Exception as e:
-        await websocket.close(code=1008, reason=f"Invalid session: {str(e)}")
+    db = _get_db()
+    
+    # Verify session exists
+    session_ref = db.collection('sessions').document(session_id)
+    session_doc = session_ref.get()
+    
+    if not session_doc.exists:
+        await websocket.close(code=1008, reason="Session not found")
+        return
+    
+    session_data = session_doc.to_dict()
+    
+    if session_data.get('status') != 'active':
+        await websocket.close(code=1008, reason="Session not active")
         return
     
     # Connect client
     await manager.connect(websocket, session_id)
     
-    # Start QR token refresh task
-    qr_task = asyncio.create_task(
-        qr_refresh_loop(websocket, session_id, session.id, db)
-    )
+    # Send initial state
+    attendance_count = await get_attendance_count(session_id)
+    await manager.send_personal_message({
+        "type": "connected",
+        "session_id": session_id,
+        "total_present": attendance_count,
+        "message": "Connected to session"
+    }, websocket)
     
+    # Start QR Broadcast Loop
+    qr_task = asyncio.create_task(qr_broadcast_loop(session_id))
+
     try:
         # Keep connection alive and listen for messages
         while True:
             data = await websocket.receive_text()
             
-            # Handle client messages (future: control commands)
             try:
                 message = json.loads(data)
-                print(f"[WebSocket] Received from client: {message}")
                 
-                # Echo back for now
-                await websocket.send_json({
-                    "type": "ack",
-                    "message": "Message received"
-                })
+                # Handle ping/pong
+                if message.get('type') == 'ping':
+                    await websocket.send_json({"type": "pong"})
+                
+                # Handle refresh request
+                elif message.get('type') == 'refresh':
+                    count = await get_attendance_count(session_id)
+                    await websocket.send_json({
+                        "type": "attendance_update",
+                        "total_present": count
+                    })
                 
             except json.JSONDecodeError:
                 await websocket.send_json({
@@ -128,104 +98,111 @@ async def websocket_session(
                 })
     
     except WebSocketDisconnect:
-        manager.disconnect(websocket, session_id)
+        manager.disconnect(websocket)
         qr_task.cancel()
-        print(f"[WebSocket] Client disconnected: {session_id}")
     
     except Exception as e:
-        print(f"[WebSocket] Error: {e}")
-        manager.disconnect(websocket, session_id)
+        print(f"WebSocket error: {e}")
+        manager.disconnect(websocket)
         qr_task.cancel()
 
 
-async def qr_refresh_loop(
-    websocket: WebSocket,
-    session_id: str,
-    session_db_id: int,
-    db: Session
-):
+async def qr_broadcast_loop(session_id: str):
     """
-    Background task to refresh QR tokens every 5 seconds
-    
-    Args:
-        websocket: Client WebSocket connection
-        session_id: Session ID string
-        session_db_id: Session database ID
-        db: Database session
+    Background task to generate and broadcast QR tokens every 5 seconds
     """
+    print(f"🔄 Starting QR Loop for {session_id} (Task Started)")
     try:
+        from app.services.qr_service import QRService
+        from app.core.config import settings
+        from app.core.constants import QR_TOKEN_PREFIX
+        import base64
+        import json
+        from datetime import datetime
+
+        db = _get_db()
+        
+        sequence = 0
+        
         while True:
-            # Get fresh session from DB
-            session = db.query(SessionModel).filter(
-                SessionModel.id == session_db_id
-            ).first()
+            # Get latest session data
+            session_ref = db.collection('sessions').document(session_id)
+            session_doc = session_ref.get()
             
-            if not session or session.status != SessionStatusEnum.ACTIVE:
-                # Session ended
-                await websocket.send_json({
-                    "type": "session_status",
-                    "status": "completed" if session else "not_found"
-                })
+            if not session_doc.exists:
+                print(f"❌ Session {session_id} not found in loop")
+                break
+                
+            session_data = session_doc.to_dict()
+            if session_data.get('status') != 'active':
+                print(f"⏹️ Session {session_id} not active ({session_data.get('status')})")
                 break
             
-            # Generate new QR token
-            qr_token, sequence = QRService.generate_qr_token(db, session)
+            # Use 'class_code' as subject or fallback
+            subject_id = session_data.get('class_code', 'UNKNOWN')
+            room_id = session_data.get('room_id', 'UNKNOWN-ROOM')
             
-            # ============================================
-            # DETAILED TOKEN LOGGING FOR DEBUGGING
-            # ============================================
-            print(f"\n{'='*60}")
-            print(f"[QR TOKEN GENERATED] Cycle #{sequence}")
-            print(f"{'='*60}")
-            print(f"Session ID: {session_id}")
-            print(f"Encrypted Token:")
-            print(f"  {qr_token}")
-            print(f"Token Length: {len(qr_token)} chars")
-            print(f"Expires in: {settings.QR_TOKEN_EXPIRY_SECONDS} seconds")
-            print(f"{'='*60}\n")
+            sequence += 1
+            timestamp = int(datetime.utcnow().timestamp())
             
-            # Broadcast to all clients
+            # ... payload construction ...
+            
+            payload_data = {
+                "sid": session_id,
+                "cid": session_data.get('class_id', 'UNKNOWN-CLASS'),
+                "rid": room_id,
+                "sub": subject_id,
+                "seq": sequence,
+                "ts": timestamp
+            }
+            
+            # Serialize and encode payload
+            json_str = json.dumps(payload_data, separators=(',', ':'))
+            payload_b64 = base64.urlsafe_b64encode(json_str.encode('utf-8')).decode('utf-8').rstrip('=')
+            
+            # Generate HMAC signature
+            signature = QRService._generate_signature(payload_b64)
+            
+            # Construct final token
+            qr_token = f"{QR_TOKEN_PREFIX}_{payload_b64}_{signature}"
+            
+            print(f"📤 Broadcasting QR: {qr_token[:20]}...")
+            
+            # Broadcast to session clients
             await manager.broadcast_to_session(session_id, {
                 "type": "qr_update",
                 "qr_token": qr_token,
                 "sequence_number": sequence,
-                "expires_in": settings.QR_TOKEN_EXPIRY_SECONDS
+                "timestamp": timestamp
             })
             
-            print(f"[WebSocket] Broadcasted QR update #{sequence} to session {session_id}")
+            await asyncio.sleep(5) # 5 Second Rotation
             
-            # Wait 5 seconds before next refresh
-            await asyncio.sleep(settings.QR_REFRESH_INTERVAL_SECONDS)
-    
     except asyncio.CancelledError:
-        print(f"[WebSocket] QR refresh task cancelled for session {session_id}")
+        print(f"QR Loop cancelled for session {session_id}")
     except Exception as e:
-        print(f"[WebSocket] Error in QR refresh loop: {e}")
+        import traceback
+        traceback.print_exc()
+        print(f"Error in QR loop for {session_id}: {e}")
 
 
-async def broadcast_attendance_update(session_id: str, stats: dict, students: list = None):
+async def get_attendance_count(session_id: str) -> int:
+    """Get current attendance count for a session"""
+    db = _get_db()
+    
+    attendance_records = db.collection('student_attendance') \
+        .where('session_id', '==', session_id) \
+        .where('status', '==', 'present') \
+        .stream()
+    
+    return sum(1 for _ in attendance_records)
+
+
+async def notify_attendance_marked(session_id: str, student_name: str = None):
     """
-    Broadcast attendance update to all clients in a session
+    Notify all connected clients that a student marked attendance
     
-    Called when:
-    - Student submits attendance
-    - Attendance status changes (manual override)
-    
-    Args:
-        session_id: Session ID to broadcast to
-        stats: Attendance statistics dict
-        students: Optional list of student statuses
+    Called from attendance_service.py after successful attendance marking
     """
-    message = {
-        "type": "attendance_update",
-        "stats": stats
-    }
-    
-    if students:
-        message["students"] = students
-        
-    await manager.broadcast_to_session(session_id, message)
-
-
-# Import after definition to avoid circular import
-from app.models.session import Session as SessionModel, SessionStatusEnum
+    count = await get_attendance_count(session_id)
+    await manager.send_attendance_update(session_id, count, student_name)

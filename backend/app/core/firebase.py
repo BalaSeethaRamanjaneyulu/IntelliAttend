@@ -10,15 +10,12 @@ def initialize_firebase():
         if not firebase_admin._apps:
             cred = None
             
-            # Check for GOOGLE_APPLICATION_CREDENTIALS env var or file path in settings
-            google_creds_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS") or "google-services.json"
+            # Check for GOOGLE_APPLICATION_CREDENTIALS in settings or env
+            google_creds_path = settings.GOOGLE_APPLICATION_CREDENTIALS or os.getenv("GOOGLE_APPLICATION_CREDENTIALS") or "serviceAccountKey.json"
             
             if os.path.exists(google_creds_path):
                 cred = credentials.Certificate(google_creds_path)
             else:
-                # Use default credentials (good for Cloud Run / GCE)
-                # or if no file found, we might be in local dev without file
-                # effectively this might fail later if auth is used but no creds provided
                 print(f"Warning: {google_creds_path} not found. Attempting to use default credentials.")
                 cred = credentials.ApplicationDefault()
 

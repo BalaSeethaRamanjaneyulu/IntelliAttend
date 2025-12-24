@@ -1,0 +1,73 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user is faculty
+    function isFaculty() {
+      return isAuthenticated() && 
+             request.auth.token.role == 'faculty';
+    }
+    
+    // Helper function to check if user is student
+    function isStudent() {
+      return isAuthenticated() && 
+             request.auth.token.role == 'student';
+    }
+    
+    // ActiveSessions Collection - Real-time QR token distribution
+    // Write: Faculty only (via backend)
+    // Read: All authenticated users (students need to listen for tokens)
+    match /ActiveSessions/{sessionId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isFaculty();
+      allow delete: if isFaculty();
+    }
+    
+    // Sessions Collection - Core attendance sessions
+    match /sessions/{sessionId} {
+      allow read: if isAuthenticated();
+      allow create: if isFaculty();
+      allow update: if isFaculty() || 
+                      (isStudent() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['smartboard_linked']));
+      allow delete: if isFaculty();
+    }
+    
+    // Student Attendance Records
+    match /student_attendance/{recordId} {
+      allow read: if isAuthenticated();
+      allow create: if isStudent();
+      allow update: if isFaculty();
+      allow delete: if false;  // Never delete attendance records
+    }
+    
+    // Faculty Attendance Records (OTP verification)
+    match /faculty_attendance/{recordId} {
+      allow read: if isAuthenticated();
+      allow create: if isFaculty();
+      allow update: if isFaculty();
+      allow delete: if false;
+    }
+    
+    // Classrooms - Reference data
+    match /classrooms/{classroomId} {
+      allow read: if isAuthenticated();
+      allow write: if isFaculty();
+    }
+    
+    // Timetable/Schedule
+    match /timetable/{scheduleId} {
+      allow read: if isAuthenticated();
+      allow write: if isFaculty();
+    }
+    
+    // Default: Deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

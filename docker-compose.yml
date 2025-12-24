@@ -2,26 +2,8 @@ version: '3.8'
 
 services:
   # MySQL Database
-  mysql:
-    image: mysql:8.0
-    container_name: intelliattend-mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password_change_me
-      MYSQL_DATABASE: intelliattend
-      MYSQL_USER: intelliattend_user
-      MYSQL_PASSWORD: intelliattend_password_change_me
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - intelliattend-network
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+  # MySQL Database - REMOVED for Firestore Migration
+  # mysql: ...
 
   # Python FastAPI Backend (development)
   backend:
@@ -30,11 +12,11 @@ services:
       dockerfile: Dockerfile.dev
     container_name: intelliattend-backend
     restart: unless-stopped
-    depends_on:
-      mysql:
-        condition: service_healthy
+    # depends_on:
+    #   mysql:
+    #     condition: service_healthy
     environment:
-      DATABASE_URL: mysql+mysqlconnector://intelliattend_user:intelliattend_password_change_me@mysql:3306/intelliattend
+      # DATABASE_URL removed
       JWT_SECRET: your_jwt_secret_change_me_in_production
       JWT_EXPIRES_IN: 86400 # 24 hours in seconds
       CORS_ORIGINS: http://localhost:8080,http://localhost:5173

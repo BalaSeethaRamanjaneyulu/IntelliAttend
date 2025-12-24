@@ -1,0 +1,425 @@
+Initialized native services in: /Users/balaseetharamanjaneyulu/.gradle/native
+Initialized jansi services in: /Users/balaseetharamanjaneyulu/.gradle/native
+The client will now receive all logging from the daemon (pid: 41277). The daemon log file: /Users/balaseetharamanjaneyulu/.gradle/daemon/8.13/daemon-41277.out.log
+Starting 18th build in daemon [uptime: 50 mins 59.973 secs, performance: 95%, GC rate: 0.00/s, heap usage: 0% of 2 GiB]
+Using 8 worker leases.
+Now considering [/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+Settings evaluated using settings file '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/settings.gradle.kts'.
+Projects loaded. Root project using build file '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/build.gradle.kts'.
+Included projects: [root project 'IntelliAttend', project ':app']
+
+> Configure project :
+Evaluating root project 'IntelliAttend' using build file '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/build.gradle.kts'.
+Resolved plugin [id: 'com.android.application', version: '8.13.2', apply: false]
+Resolved plugin [id: 'com.android.library', version: '8.13.2', apply: false]
+Resolved plugin [id: 'org.jetbrains.kotlin.android', version: '1.9.10', apply: false]
+Resolved plugin [id: 'com.google.devtools.ksp', version: '1.9.10-1.0.13', apply: false]
+Resolved plugin [id: 'com.google.dagger.hilt.android', version: '2.48.1', apply: false]
+Resolved plugin [id: 'com.google.gms.google-services', version: '4.4.0', apply: false]
+Resolved plugin [id: 'com.google.firebase.crashlytics', version: '2.9.9', apply: false]
+
+> Configure project :app
+Evaluating project ':app' using build file '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build.gradle.kts'.
+Resolved plugin [id: 'com.android.application']
+Resolved plugin [id: 'org.jetbrains.kotlin.android']
+Resolved plugin [id: 'com.google.devtools.ksp']
+Resolved plugin [id: 'com.google.dagger.hilt.android']
+Resolved plugin [id: 'com.google.gms.google-services']
+Using default execution profile
+Using Kotlin Gradle Plugin gradle81 variant
+All projects evaluated.
+Task name matched 'assembleDebug'
+Selected primary task 'assembleDebug' from project :
+Tasks to be executed: [task ':app:preBuild', task ':app:preDebugBuild', task ':app:mergeDebugNativeDebugMetadata', task ':app:checkDebugAarMetadata', task ':app:processDebugNavigationResources', task ':app:compileDebugNavigationResources', task ':app:generateDebugResValues', task ':app:processDebugGoogleServices', task ':app:mapDebugSourceSetPaths', task ':app:generateDebugResources', task ':app:mergeDebugResources', task ':app:packageDebugResources', task ':app:parseDebugLocalResources', task ':app:createDebugCompatibleScreenManifests', task ':app:extractDeepLinksDebug', task ':app:processDebugMainManifest', task ':app:processDebugManifest', task ':app:processDebugManifestForPackage', task ':app:processDebugResources', task ':app:kspDebugKotlin', task ':app:compileDebugKotlin', task ':app:javaPreCompileDebug', task ':app:compileDebugJavaWithJavac', task ':app:mergeDebugShaders', task ':app:compileDebugShaders', task ':app:generateDebugAssets', task ':app:mergeDebugAssets', task ':app:compressDebugAssets', task ':app:desugarDebugFileDependencies', task ':app:hiltAggregateDepsDebug', task ':app:hiltJavaCompileDebug', task ':app:transformDebugClassesWithAsm', task ':app:dexBuilderDebug', task ':app:mergeDebugGlobalSynthetics', task ':app:processDebugJavaRes', task ':app:mergeDebugJavaResource', task ':app:checkDebugDuplicateClasses', task ':app:mergeExtDexDebug', task ':app:mergeLibDexDebug', task ':app:mergeProjectDexDebug', task ':app:mergeDebugJniLibFolders', task ':app:mergeDebugNativeLibs', task ':app:stripDebugDebugSymbols', task ':app:validateSigningDebug', task ':app:writeDebugAppMetadata', task ':app:writeDebugSigningConfigVersions', task ':app:packageDebug', task ':app:createDebugApkListingFileRedirect', task ':app:assembleDebug']
+Tasks that were excluded: []
+Resolve mutations for :app:preBuild (Thread[Execution worker,5,main]) started.
+:app:preBuild (Thread[Execution worker,5,main]) started.
+
+> Task :app:preBuild UP-TO-DATE
+Skipping task ':app:preBuild' as it has no actions.
+Resolve mutations for :app:preDebugBuild (Thread[Execution worker,5,main]) started.
+:app:preDebugBuild (Thread[Execution worker,5,main]) started.
+
+> Task :app:preDebugBuild UP-TO-DATE
+Skipping task ':app:preDebugBuild' as it has no actions.
+Resolve mutations for :app:mergeDebugNativeDebugMetadata (Thread[Execution worker,5,main]) started.
+:app:mergeDebugNativeDebugMetadata (Thread[Execution worker,5,main]) started.
+
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+Skipping task ':app:mergeDebugNativeDebugMetadata' as it has no source files and no previous output files.
+Resolve mutations for :app:checkDebugAarMetadata (Thread[Execution worker,5,main]) started.
+:app:checkDebugAarMetadata (Thread[Execution worker,5,main]) started.
+
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+Caching disabled for task ':app:checkDebugAarMetadata' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:checkDebugAarMetadata' as it is up-to-date.
+Resolve mutations for :app:processDebugNavigationResources (Thread[Execution worker,5,main]) started.
+:app:processDebugNavigationResources (Thread[Execution worker,5,main]) started.
+
+> Task :app:processDebugNavigationResources UP-TO-DATE
+Caching disabled for task ':app:processDebugNavigationResources' because:
+  Build cache is disabled
+Skipping task ':app:processDebugNavigationResources' as it is up-to-date.
+Resolve mutations for :app:compileDebugNavigationResources (Thread[Execution worker,5,main]) started.
+:app:compileDebugNavigationResources (Thread[Execution worker,5,main]) started.
+
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+Caching disabled for task ':app:compileDebugNavigationResources' because:
+  Build cache is disabled
+Skipping task ':app:compileDebugNavigationResources' as it is up-to-date.
+Resolve mutations for :app:generateDebugResValues (Thread[Execution worker,5,main]) started.
+:app:generateDebugResValues (Thread[Execution worker,5,main]) started.
+
+> Task :app:generateDebugResValues UP-TO-DATE
+Caching disabled for task ':app:generateDebugResValues' because:
+  Build cache is disabled
+Skipping task ':app:generateDebugResValues' as it is up-to-date.
+Resolve mutations for :app:processDebugGoogleServices (Thread[Execution worker,5,main]) started.
+:app:processDebugGoogleServices (Thread[Execution worker,5,main]) started.
+
+> Task :app:processDebugGoogleServices UP-TO-DATE
+Caching disabled for task ':app:processDebugGoogleServices' because:
+  Build cache is disabled
+Skipping task ':app:processDebugGoogleServices' as it is up-to-date.
+Resolve mutations for :app:mapDebugSourceSetPaths (Thread[Execution worker,5,main]) started.
+:app:mapDebugSourceSetPaths (Thread[Execution worker,5,main]) started.
+
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+Caching disabled for task ':app:mapDebugSourceSetPaths' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:mapDebugSourceSetPaths' as it is up-to-date.
+Resolve mutations for :app:generateDebugResources (Thread[Execution worker,5,main]) started.
+:app:generateDebugResources (Thread[Execution worker,5,main]) started.
+
+> Task :app:generateDebugResources UP-TO-DATE
+Caching disabled for task ':app:generateDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:generateDebugResources' as it is up-to-date.
+Resolve mutations for :app:mergeDebugResources (Thread[Execution worker,5,main]) started.
+:app:mergeDebugResources (Thread[Execution worker,5,main]) started.
+
+> Task :app:mergeDebugResources UP-TO-DATE
+Caching disabled for task ':app:mergeDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:mergeDebugResources' as it is up-to-date.
+Resolve mutations for :app:packageDebugResources (Thread[Execution worker,5,main]) started.
+:app:packageDebugResources (Thread[Execution worker,5,main]) started.
+
+> Task :app:packageDebugResources UP-TO-DATE
+Caching disabled for task ':app:packageDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:packageDebugResources' as it is up-to-date.
+Resolve mutations for :app:parseDebugLocalResources (Thread[Execution worker,5,main]) started.
+:app:parseDebugLocalResources (Thread[Execution worker,5,main]) started.
+
+> Task :app:parseDebugLocalResources UP-TO-DATE
+Caching disabled for task ':app:parseDebugLocalResources' because:
+  Build cache is disabled
+Skipping task ':app:parseDebugLocalResources' as it is up-to-date.
+Resolve mutations for :app:createDebugCompatibleScreenManifests (Thread[Execution worker,5,main]) started.
+:app:createDebugCompatibleScreenManifests (Thread[Execution worker,5,main]) started.
+
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+Caching disabled for task ':app:createDebugCompatibleScreenManifests' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:createDebugCompatibleScreenManifests' as it is up-to-date.
+Resolve mutations for :app:extractDeepLinksDebug (Thread[Execution worker,5,main]) started.
+:app:extractDeepLinksDebug (Thread[Execution worker,5,main]) started.
+
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+Caching disabled for task ':app:extractDeepLinksDebug' because:
+  Build cache is disabled
+Skipping task ':app:extractDeepLinksDebug' as it is up-to-date.
+Resolve mutations for :app:processDebugMainManifest (Thread[Execution worker,5,main]) started.
+:app:processDebugMainManifest (Thread[Execution worker,5,main]) started.
+
+> Task :app:processDebugMainManifest UP-TO-DATE
+Caching disabled for task ':app:processDebugMainManifest' because:
+  Build cache is disabled
+Skipping task ':app:processDebugMainManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifest (Thread[Execution worker,5,main]) started.
+:app:processDebugManifest (Thread[Execution worker,5,main]) started.
+
+> Task :app:processDebugManifest UP-TO-DATE
+Caching disabled for task ':app:processDebugManifest' because:
+  Build cache is disabled
+Skipping task ':app:processDebugManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifestForPackage (Thread[Execution worker,5,main]) started.
+:app:processDebugManifestForPackage (Thread[Execution worker,5,main]) started.
+
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+Custom actions are attached to task ':app:processDebugManifestForPackage'.
+Caching disabled for task ':app:processDebugManifestForPackage' because:
+  Build cache is disabled
+Skipping task ':app:processDebugManifestForPackage' as it is up-to-date.
+Resolve mutations for :app:processDebugResources (Thread[Execution worker,5,main]) started.
+:app:processDebugResources (Thread[Execution worker Thread 7,5,main]) started.
+
+> Task :app:processDebugResources UP-TO-DATE
+Registered task dependencies: app:debugCompileClasspath
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-tooling
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-test-manifest
+Skipping misunderstood TO dep string: androidx.compose.ui:ui
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-graphics
+Skipping misunderstood TO dep string: androidx.compose.ui:ui-tooling-preview
+Skipping misunderstood TO dep string: androidx.compose.material3:material3
+Skipping misunderstood TO dep string: androidx.compose.material:material-icons-extended
+Skipping misunderstood TO dep string: com.google.firebase:firebase-auth-ktx
+Skipping misunderstood TO dep string: com.google.firebase:firebase-firestore-ktx
+Skipping misunderstood TO dep string: com.google.firebase:firebase-messaging-ktx
+Skipping misunderstood TO dep string: com.google.firebase:firebase-installations-ktx
+Skipping misunderstood TO dep string: com.google.firebase:firebase-analytics-ktx
+Starting dependency analysis
+Caching disabled for task ':app:processDebugResources' because:
+  Build cache is disabled
+Skipping task ':app:processDebugResources' as it is up-to-date.
+Resolve mutations for :app:kspDebugKotlin (Thread[Execution worker Thread 7,5,main]) started.
+:app:kspDebugKotlin (Thread[Execution worker Thread 7,5,main]) started.
+
+> Task :app:kspDebugKotlin UP-TO-DATE
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+Registered task dependencies: app:kotlinCompilerClasspath
+Starting dependency analysis
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+Caching disabled for task ':app:kspDebugKotlin' because:
+  Build cache is disabled
+Skipping task ':app:kspDebugKotlin' as it is up-to-date.
+Resolve mutations for :app:compileDebugKotlin (Thread[Execution worker Thread 7,5,main]) started.
+:app:compileDebugKotlin (Thread[Execution worker Thread 7,5,main]) started.
+Resolve mutations for :app:javaPreCompileDebug (Thread[Execution worker Thread 5,5,main]) started.
+:app:javaPreCompileDebug (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:javaPreCompileDebug UP-TO-DATE
+Registered task dependencies: app:_agp_internal_javaPreCompileDebug_kspClasspath
+Starting dependency analysis
+Caching disabled for task ':app:javaPreCompileDebug' because:
+  Build cache is disabled
+Skipping task ':app:javaPreCompileDebug' as it is up-to-date.
+Resolve mutations for :app:mergeDebugShaders (Thread[Execution worker Thread 5,5,main]) started.
+:app:mergeDebugShaders (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:mergeDebugShaders UP-TO-DATE
+Caching disabled for task ':app:mergeDebugShaders' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':app:mergeDebugShaders' as it is up-to-date.
+Resolve mutations for :app:compileDebugShaders (Thread[Execution worker Thread 5,5,main]) started.
+:app:compileDebugShaders (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:compileDebugShaders NO-SOURCE
+Skipping task ':app:compileDebugShaders' as it has no source files and no previous output files.
+Resolve mutations for :app:generateDebugAssets (Thread[Execution worker Thread 5,5,main]) started.
+:app:generateDebugAssets (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:generateDebugAssets UP-TO-DATE
+Skipping task ':app:generateDebugAssets' as it has no actions.
+Resolve mutations for :app:mergeDebugAssets (Thread[Execution worker Thread 5,5,main]) started.
+:app:mergeDebugAssets (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:mergeDebugAssets UP-TO-DATE
+Caching disabled for task ':app:mergeDebugAssets' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':app:mergeDebugAssets' as it is up-to-date.
+Resolve mutations for :app:compressDebugAssets (Thread[Execution worker Thread 5,5,main]) started.
+:app:compressDebugAssets (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:compressDebugAssets UP-TO-DATE
+Caching disabled for task ':app:compressDebugAssets' because:
+  Build cache is disabled
+Skipping task ':app:compressDebugAssets' as it is up-to-date.
+Resolve mutations for :app:desugarDebugFileDependencies (Thread[Execution worker Thread 5,5,main]) started.
+:app:desugarDebugFileDependencies (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+Caching disabled for task ':app:desugarDebugFileDependencies' because:
+  Build cache is disabled
+Skipping task ':app:desugarDebugFileDependencies' as it is up-to-date.
+Resolve mutations for :app:checkDebugDuplicateClasses (Thread[Execution worker Thread 5,5,main]) started.
+:app:checkDebugDuplicateClasses (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+Caching disabled for task ':app:checkDebugDuplicateClasses' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:checkDebugDuplicateClasses' as it is up-to-date.
+Resolve mutations for :app:mergeExtDexDebug (Thread[Execution worker Thread 5,5,main]) started.
+:app:mergeExtDexDebug (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:mergeExtDexDebug UP-TO-DATE
+Caching disabled for task ':app:mergeExtDexDebug' because:
+  Build cache is disabled
+Skipping task ':app:mergeExtDexDebug' as it is up-to-date.
+Resolve mutations for :app:mergeLibDexDebug (Thread[Execution worker Thread 5,5,main]) started.
+:app:mergeLibDexDebug (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:mergeLibDexDebug UP-TO-DATE
+Caching disabled for task ':app:mergeLibDexDebug' because:
+  Build cache is disabled
+Skipping task ':app:mergeLibDexDebug' as it is up-to-date.
+Resolve mutations for :app:mergeDebugJniLibFolders (Thread[Execution worker Thread 5,5,main]) started.
+:app:mergeDebugJniLibFolders (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+Caching disabled for task ':app:mergeDebugJniLibFolders' because:
+  Build cache is disabled
+  Simple merging task
+Skipping task ':app:mergeDebugJniLibFolders' as it is up-to-date.
+Resolve mutations for :app:mergeDebugNativeLibs (Thread[Execution worker Thread 5,5,main]) started.
+:app:mergeDebugNativeLibs (Thread[Execution worker Thread 5,5,main]) started.
+
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+Caching disabled for task ':app:mergeDebugNativeLibs' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:mergeDebugNativeLibs' as it is up-to-date.
+Resolve mutations for :app:stripDebugDebugSymbols (Thread[Execution worker Thread 5,5,main]) started.
+:app:stripDebugDebugSymbols (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+Caching disabled for task ':app:stripDebugDebugSymbols' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:stripDebugDebugSymbols' as it is up-to-date.
+Resolve mutations for :app:validateSigningDebug (Thread[Execution worker Thread 2,5,main]) started.
+:app:validateSigningDebug (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :app:validateSigningDebug UP-TO-DATE
+Caching disabled for task ':app:validateSigningDebug' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:validateSigningDebug' as it is up-to-date.
+Resolve mutations for :app:writeDebugAppMetadata (Thread[Execution worker Thread 2,5,main]) started.
+:app:writeDebugAppMetadata (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+Caching disabled for task ':app:writeDebugAppMetadata' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:writeDebugAppMetadata' as it is up-to-date.
+Resolve mutations for :app:writeDebugSigningConfigVersions (Thread[Execution worker Thread 2,5,main]) started.
+:app:writeDebugSigningConfigVersions (Thread[Execution worker Thread 2,5,main]) started.
+
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+Caching disabled for task ':app:writeDebugSigningConfigVersions' because:
+  Build cache is disabled
+  Caching has been disabled for the task
+Skipping task ':app:writeDebugSigningConfigVersions' as it is up-to-date.
+
+> Task :app:compileDebugKotlin
+Registered task dependencies: app:kotlinCompilerPluginClasspathDebug
+Starting dependency analysis
+Caching disabled for task ':app:compileDebugKotlin' because:
+  Build cache is disabled
+Task ':app:compileDebugKotlin' is not up-to-date because:
+  Input property 'sources' file /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/MainActivity.kt has changed.
+  Input property 'sources' file /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/auth/LoginScreen.kt has changed.
+  Input property 'sources' file /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/auth/AuthHubScreen.kt has been added.
+  and more...
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/generatedByKspDebugKotlin/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/generatedByKspDebugKotlin/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/generatedByKspDebugKotlin/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/kotlin', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/debug/java', not found
+file or directory '/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/generatedByKspDebugKotlin/kotlin', not found
+Kotlin source files: /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/faculty/FacultyRepository.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/faculty/SessionViewModel.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/faculty/OTPScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/faculty/SmartBoardLinkScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/faculty/LiveMonitorScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/splash/SplashScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/auth/AuthViewModel.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/auth/LoginScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/auth/AuthHubScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/theme/Color.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/theme/Theme.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/theme/Type.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/history/AttendanceHistoryScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/onboarding/ProfileSetupScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/MainActivity.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/security/SecurityService.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/auth/AuthRepository.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/network/NetworkModule.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/network/ApiService.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/student/StudentRepository.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/student/QRScannerScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/student/StudentDashboardViewModel.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/student/AttendanceViewModel.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/student/StudentDashboardScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/student/TimetableScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/student/ProfileScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/IntelliAttendApp.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/device/DeviceBindingService.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/data/model/User.kt
+Java source files: /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/dagger/hilt/internal/aggregatedroot/codegen/_com_intelliattend_app_IntelliAttendApp.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_student_AttendanceViewModel_HiltModules_BindsModule.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_faculty_SessionViewModel_HiltModules_KeyModule.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_faculty_SessionViewModel_HiltModules_BindsModule.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_student_StudentDashboardViewModel_HiltModules_BindsModule.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_student_AttendanceViewModel_HiltModules_KeyModule.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_network_NetworkModule.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_MainActivity_GeneratedInjector.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_ui_auth_AuthViewModel_HiltModules_BindsModule.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_ui_auth_AuthViewModel_HiltModules_KeyModule.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_student_StudentDashboardViewModel_HiltModules_KeyModule.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/hilt_aggregated_deps/_com_intelliattend_app_IntelliAttendApp_GeneratedInjector.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/faculty/SessionViewModel_HiltModules.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/faculty/SessionViewModel_HiltModules_KeyModule_ProvideFactory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/faculty/SessionViewModel_Factory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/faculty/FacultyRepository_Factory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/ui/auth/AuthViewModel_HiltModules.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/ui/auth/AuthViewModel_Factory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/ui/auth/AuthViewModel_HiltModules_KeyModule_ProvideFactory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/Hilt_MainActivity.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/MainActivity_GeneratedInjector.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/security/SecurityService_Factory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/auth/AuthRepository_Factory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/IntelliAttendApp_GeneratedInjector.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/network/NetworkModule_ProvideFirebaseAuthFactory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/network/NetworkModule_ProvideRetrofitFactory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/network/NetworkModule_ProvideApiServiceFactory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/network/NetworkModule_ProvideOkHttpClientFactory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/network/NetworkModule_ProvideFirebaseFirestoreFactory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/student/StudentDashboardViewModel_Factory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/student/AttendanceViewModel_HiltModules.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/student/AttendanceViewModel_HiltModules_KeyModule_ProvideFactory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/student/StudentRepository_Factory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/student/AttendanceViewModel_Factory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/student/StudentDashboardViewModel_HiltModules.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/student/StudentDashboardViewModel_HiltModules_KeyModule_ProvideFactory.java, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/generated/ksp/debug/java/com/intelliattend/app/device/DeviceBindingService_Factory.java
+Script source files: 
+Script file extensions: 
+Using Kotlin/JVM incremental compilation
+[KOTLIN] Kotlin compilation 'jdkHome' argument: null
+i: found daemon on port 17255 (4050444 ms old), trying to connect
+i: connected to the daemon
+Options for KOTLIN DAEMON: IncrementalCompilationOptions(super=CompilationOptions(compilerMode=INCREMENTAL_COMPILER, targetPlatform=JVM, reportCategories=[0, 3], reportSeverity=2, requestedCompilationResults=[0], kotlinScriptExtensions=[]), areFileChangesKnown=true, modifiedFiles=[/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/MainActivity.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/auth/LoginScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/auth/AuthHubScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/faculty/LiveMonitorScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/faculty/SmartBoardLinkScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/history/AttendanceHistoryScreen.kt, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/onboarding/ProfileSetupScreen.kt], deletedFiles=[], classpathChanges=NoChanges, workingDir=/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/kotlin/compileDebugKotlin/cacheable, multiModuleICSettings=MultiModuleICSettings(buildHistoryFile=/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/kotlin/compileDebugKotlin/local-state/build-history.bin, useModuleDetection=true), usePreciseJavaTracking=true, outputFiles=[/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/tmp/kotlin-classes/debug, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/kotlin/compileDebugKotlin/cacheable, /Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/build/kotlin/compileDebugKotlin/local-state])
+e: file:///Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/auth/AuthHubScreen.kt:170:81 Unresolved reference: ArrowForward
+e: file:///Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/history/AttendanceHistoryScreen.kt:223:26 Type mismatch: inferred type is BorderStroke but SelectableChipBorder? was expected
+e: file:///Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/app/src/main/java/com/intelliattend/app/ui/history/AttendanceHistoryScreen.kt:236:26 Type mismatch: inferred type is BorderStroke but SelectableChipBorder? was expected
+Restoring task outputs to pre-compilation state
+
+> Task :app:compileDebugKotlin FAILED
+
+[Incubating] Problems report is available at: file:///Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 3s
+32 actionable tasks: 1 executed, 31 up-to-date
+Watched directory hierarchies: [/Users/balaseetharamanjaneyulu/Dev/IntelliAttend/mobile-app]

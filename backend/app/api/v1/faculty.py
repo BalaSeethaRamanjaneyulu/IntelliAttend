@@ -4,7 +4,6 @@ Faculty API routes - complete implementation for Phase 2
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from app.db.database import get_db
 from app.schemas.faculty_schema import (
     SessionCreateRequest,
     OTPResponse,
@@ -25,7 +24,7 @@ router = APIRouter()
 @router.post("/start_session", response_model=OTPResponse)
 async def start_session(
     session_data: SessionCreateRequest,
-    db: Session = Depends(get_db)
+    
 ):
     """
     Start new attendance session and generate OTP
@@ -60,7 +59,7 @@ async def start_session(
 @router.post("/generate_qr", response_model=QRTokenResponse)
 async def generate_qr_token(
     qr_request: QRGenerateRequest,
-    db: Session = Depends(get_db)
+    
 ):
     """
     Generate dynamic QR token after OTP verification
@@ -99,7 +98,7 @@ async def generate_qr_token(
 @router.get("/live_status/{session_id}", response_model=LiveStatusResponse)
 async def get_live_status(
     session_id: str,
-    db: Session = Depends(get_db)
+    
 ):
     """
     Get live attendance status for active session

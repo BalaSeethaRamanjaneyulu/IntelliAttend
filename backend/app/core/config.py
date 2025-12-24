@@ -16,7 +16,11 @@ class Settings(BaseSettings):
     PORT: int = 8000
     
     # Database
-    DATABASE_URL: str
+    # DATABASE_URL: str # Removed for Firestore migration
+
+    # Firebase
+    FIREBASE_PROJECT_ID: str | None = None
+    GOOGLE_APPLICATION_CREDENTIALS: str | None = None
     
     # JWT
     JWT_SECRET: str
@@ -48,7 +52,15 @@ class Settings(BaseSettings):
     
     # Security
     BCRYPT_ROUNDS: int = 12
-    CORS_ORIGINS: List[str] = ["http://localhost:8080", "http://localhost:5173"]
+    QR_SECRET_KEY: str = "your-secret-key-here-change-in-production"  # For HMAC token signing
+    CORS_ORIGINS: List[str] = [
+        "http://localhost:8080", 
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:5500",
+        "http://127.0.0.1:5500"
+    ]
     ALLOWED_HOSTS: List[str] = ["*"]
     
     # Logging

@@ -1,0 +1,2 @@
+The client will now receive all logging from the daemon (pid: 41277). The daemon log file: /Users/balaseetharamanjaneyulu/.gradle/daemon/8.13/daemon-41277.out.log
+Starting 19th build in daemon [uptime: 51 mins 11.469 secs, performance: 95%, GC rate: 0.00/s, heap usage: 0% of 2 GiB]

@@ -33,7 +33,7 @@ class TokenRefreshRequest(BaseModel):
 
 class UserProfile(BaseModel):
     """Basic user profile"""
-    id: int
+    id: str # Changed from int to str for Firestore IDs
     user_id: str  # student_id or faculty_id
     name: str
     email: str

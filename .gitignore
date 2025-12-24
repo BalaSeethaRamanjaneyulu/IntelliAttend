@@ -112,3 +112,4 @@ temp/
 # Docker
 .docker/
 docker-compose.override.yml
+mobile-app/app/google-services.json

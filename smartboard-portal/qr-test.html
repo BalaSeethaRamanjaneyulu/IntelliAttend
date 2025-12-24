@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QR Test</title>
+    <script src="js/qrcode.min.js"></script>
+</head>
+
+<body>
+    <h1>QR Code Test</h1>
+    <div id="qrcode"></div>
+    <div id="qrcode2" style="margin-top: 20px;"></div>
+
+    <script>
+        // Test 1: Simple generation
+        const qr1 = new QRCode(document.getElementById("qrcode"), {
+            text: "Hello World!",
+            width: 256,
+            height: 256
+        });
+
+        // Test 2: With options
+        setTimeout(() => {
+            const qr2 = new QRCode(document.getElementById("qrcode2"), {
+                text: "QR_TEST_1234567890_ABCDEFGH",
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }, 100);
+    </script>
+</body>
+
+</html>
